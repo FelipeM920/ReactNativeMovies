@@ -33,13 +33,26 @@ export default StyleSheet.create({
     borderRadius: 5,
     backgroundColor: 'transparent',
   },
-  summaryContainer: {
-    flex:1,
-  },
-  summary: {
+  summaryText: {
     color: '#0294A5',
     fontSize: 16,
     lineHeight: 19,
     paddingLeft: 20,
+    paddingBottom: 20,
+    marginVertical: 18,
+    borderBottomWidth: 3,
+    borderBottomColor: '#0294A5',
   },
+  placeBirthText: {
+    paddingLeft: 10,
+    paddingBottom: 16,
+    fontSize: 14,
+    lineHeight: 16,
+  },
+  biographyText: {
+    textAlign: 'left',
+    paddingHorizontal: 10,
+    fontSize: 14,
+    lineHeight: 20,
+  }
 });

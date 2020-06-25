@@ -61,12 +61,12 @@ export function ArtistsDetailsScreen({route, navigation}) {
             } | ${artistDetail.birthday}`}</Text>
           </View>
         </View>
-
-        <View style={styles.summary}>
+        <View>
           <Text style={styles.summaryText}>Summary</Text>
         </View>
         <View>
-          <Text> {artistDetail.biography}</Text>
+          <Text style={styles.placeBirthText}>{artistDetail.place_of_birth}</Text>
+          <Text style={styles.biographyText}>{artistDetail.biography}</Text>
         </View>
       </ScrollView>
     );

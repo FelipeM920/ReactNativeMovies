@@ -11,25 +11,31 @@ const BottomTab = createBottomTabNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <BottomTab.Navigator tabBarOptions={{activeTintColor: '#0294A5'}}>
+      <BottomTab.Navigator
+      screenOptions={({route}) => ({
+        tabBarIcon: ({color}) => {
+          let iconName;
+          if (route.name === 'DiscoverStack') {
+            iconName = 'view-module';
+          } else if (route.name === 'ArtistsStack') {
+            iconName = 'account-circle'
+          }
+          return <Icon name={iconName} color={color} size={35} />
+        }
+      })}
+      tabBarOptions={{activeTintColor: '#0294A5', inactiveTintColor: '#9B9B9B'}}>
         <BottomTab.Screen
           component={DiscoverStack}
-          name="DiscoverStack"
+          name='DiscoverStack'
           options={{
             title: 'Discover',
-            tabBarIcon: () => (
-              <Icon name="view-module" color="#333" size={24} />
-            ),
           }}
         />
         <BottomTab.Screen
           component={ArtistsStack}
-          name="ArtistsStack"
+          name='ArtistsStack'
           options={{
             title: 'Artists',
-            tabBarIcon: () => (
-              <Icon name="account-circle" color="#333" size={24} />
-            ),
           }}
         />
       </BottomTab.Navigator>
