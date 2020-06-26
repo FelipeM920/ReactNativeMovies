@@ -5,7 +5,6 @@ import {
   Text,
   ActivityIndicator,
   ScrollView,
-  Image,
   ImageBackground,
 } from 'react-native';
 
