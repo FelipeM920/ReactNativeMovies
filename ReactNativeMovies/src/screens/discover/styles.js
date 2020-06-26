@@ -10,9 +10,4 @@ export default StyleSheet.create({
     marginLeft: 5,
     marginBottom: 10,
   },
-  loaderContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
 });

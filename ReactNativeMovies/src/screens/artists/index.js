@@ -1,11 +1,7 @@
 import React, {useState, useEffect} from 'react';
-
-import {View, FlatList, ActivityIndicator} from 'react-native';
-
+import {FlatList} from 'react-native';
 import {api} from '../../services';
-import {ArtistCard} from '../../components';
-
-import styles from './styles';
+import {ArtistCard, CallLoader} from '../../components';
 
 export function ArtistsScreen(props) {
   const {navigation} = props;
@@ -41,9 +37,7 @@ export function ArtistsScreen(props) {
   function renderContent() {
     if (isLoading) {
       return (
-        <View style={styles.loaderContainer}>
-          <ActivityIndicator size="large" />
-        </View>
+        <CallLoader />
       );
     }
 

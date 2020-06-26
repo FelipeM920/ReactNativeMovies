@@ -3,13 +3,12 @@ import React, {useEffect, useState, useRef, useMemo} from 'react';
 import {
   View,
   Text,
-  ActivityIndicator,
   ScrollView,
   FlatList,
   Animated,
 } from 'react-native';
 
-import {MovieCard} from '../../components';
+import {MovieCard, CallLoader} from '../../components';
 import {api} from '../../services';
 
 import styles from './styles';
@@ -100,9 +99,7 @@ export function DiscoverScreen(props) {
   function renderContent() {
     if (isLoading) {
       return (
-        <View style={styles.loaderContainer}>
-          <ActivityIndicator size="large" />
-        </View>
+        <CallLoader />
       );
     }
 

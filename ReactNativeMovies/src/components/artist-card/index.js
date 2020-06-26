@@ -32,7 +32,7 @@ export function ArtistCard(props) {
       activeOpacity={0.6}
       onPress={onPress}
       style={styles.container}>
-      <Animated.View style={[styles.animateViewStyle, {opacity}]}>
+      <Animated.View style={[styles.animatedViewStyle, {opacity}]}>
         <View style={styles.imageContainer}>
           <Image
             resizeMode="cover"

@@ -6,11 +6,6 @@ export default StyleSheet.create({
   container: {
     backgroundColor: '#fff',
   },
-  loaderContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   image: {
     height: 277,
     width,

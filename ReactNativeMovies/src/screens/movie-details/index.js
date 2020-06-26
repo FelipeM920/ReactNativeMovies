@@ -1,10 +1,10 @@
 import React, { useState, useLayoutEffect, useEffect } from 'react';
 import { View, ActivityIndicator, ImageBackground, Text } from 'react-native';
 import { api } from '../../services';
-import { ScrollView, FlatList } from 'react-native-gesture-handler';
+import { FlatList } from 'react-native-gesture-handler';
 import styles from './styles';
 import LinearGradient from 'react-native-linear-gradient';
-import { ArtistCard } from '../../components';
+import { ArtistCard, CallLoader } from '../../components';
 
 export function MovieDetailsScreen({ route, navigation }) {
   const { movieName, movieId } = route.params;
@@ -21,7 +21,6 @@ export function MovieDetailsScreen({ route, navigation }) {
       const { data } = await api.get(`/movies/${movieId}`);
       setMovieDetail(data);
       setIsLoading(false);
-      console.log(data);
     }
     getMovieDetails()
   }, [movieId])
@@ -38,9 +37,7 @@ export function MovieDetailsScreen({ route, navigation }) {
   function renderContent() {
     if (isLoading) {
       return (
-        <View style={styles.loaderContainer}>
-          <ActivityIndicator size="large" />
-        </View>
+        <CallLoader />
       );
     }
 
@@ -49,6 +46,39 @@ export function MovieDetailsScreen({ route, navigation }) {
         artistName: name,
         artistId: id,
       });
+    }
+
+    function renderHeaderComponent() {
+      return (
+        <View style={styles.container}>
+          <View>
+            <ImageBackground source={{ uri: movieDetail.backdrop_path }}
+              resizeMode='cover'
+              style={styles.image}>
+              <LinearGradient
+                colors={['rgba(255,255,255,0.0001)', 'rgba(255,255,255,1)']}
+                style={styles.linearGradient}
+              />
+            </ImageBackground>
+            <View style={styles.genreContainer}>
+              {renderGenreList(movieDetail)}
+            </View>
+          </View>
+          <View style={styles.infoContainer}>
+            <View style={styles.details}>
+              <Text>Language: {movieDetail.original_language}</Text>
+              <Text>{`${movieDetail.release_date}         ${movieDetail.runtime}`}</Text>
+            </View>
+            <View style={styles.synopsis}>
+              <Text style={styles.synopsisTitle}>Synopsis</Text>
+              <Text style={styles.synopsisOverview}>{movieDetail.overview}</Text>
+            </View>
+          </View>
+          <View style={styles.cast}>
+            <Text style={styles.castText}>Cast</Text>
+          </View>
+        </View>
+      );
     }
 
     return (
@@ -66,34 +96,7 @@ export function MovieDetailsScreen({ route, navigation }) {
           />
         )}
         ListHeaderComponent={
-          <View style={styles.container}>
-            <View>
-              <ImageBackground source={{ uri: movieDetail.backdrop_path }}
-                resizeMode='cover'
-                style={styles.image}>
-                <LinearGradient
-                  colors={['rgba(255,255,255,0.0001)', 'rgba(255,255,255,1)']}
-                  style={styles.linearGradient}
-                />
-              </ImageBackground>
-              <View style={styles.genreContainer}>
-                {renderGenreList(movieDetail)}
-              </View>
-            </View>
-            <View style={styles.infoContainer}>
-              <View style={styles.details}>
-                <Text>Language: {movieDetail.original_language}</Text>
-                <Text>{`${movieDetail.release_date}         ${movieDetail.runtime}`}</Text>
-              </View>
-              <View style={styles.synopsis}>
-                <Text style={styles.synopsisTitle}>Synopsis</Text>
-                <Text style={styles.synopsisOverview}>{movieDetail.overview}</Text>
-              </View>
-            </View>
-            <View style={styles.cast}>
-              <Text style={styles.castText}>Cast</Text>
-            </View>
-          </View>
+          renderHeaderComponent()
         }
       />
     );
