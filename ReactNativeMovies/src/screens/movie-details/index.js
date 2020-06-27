@@ -1,5 +1,5 @@
 import React, { useState, useLayoutEffect, useEffect } from 'react';
-import { View, ActivityIndicator, ImageBackground, Text } from 'react-native';
+import { View, ImageBackground, Text } from 'react-native';
 import { api } from '../../services';
 import { FlatList } from 'react-native-gesture-handler';
 import styles from './styles';
