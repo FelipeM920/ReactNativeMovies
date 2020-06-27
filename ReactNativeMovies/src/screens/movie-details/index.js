@@ -5,6 +5,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import styles from './styles';
 import LinearGradient from 'react-native-linear-gradient';
 import { ArtistCard, CallLoader } from '../../components';
+import LangIso from 'iso-639-1';
 
 export function MovieDetailsScreen({ route, navigation }) {
   const { movieName, movieId } = route.params;
@@ -72,7 +73,7 @@ export function MovieDetailsScreen({ route, navigation }) {
           </View>
           <View style={styles.infoContainer}>
             <View style={styles.details}>
-              <Text>Language: {movieDetail.original_language}</Text>
+              <Text>Language: {LangIso.getName(movieDetail.original_language)}</Text>
               <Text>{`${movieDetail.release_date}         ${timeConvert(movieDetail.runtime)}`}</Text>
             </View>
             <View style={styles.synopsis}>
