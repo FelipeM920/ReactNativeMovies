@@ -48,6 +48,12 @@ export function MovieDetailsScreen({ route, navigation }) {
       });
     }
 
+    function timeConvert(time) {
+      var hours = Math.floor(time / 60);
+      var minutes = time % 60;
+      return `${hours}h ${minutes}m`;
+    }
+
     function renderHeaderComponent() {
       return (
         <View style={styles.container}>
@@ -67,7 +73,7 @@ export function MovieDetailsScreen({ route, navigation }) {
           <View style={styles.infoContainer}>
             <View style={styles.details}>
               <Text>Language: {movieDetail.original_language}</Text>
-              <Text>{`${movieDetail.release_date}         ${movieDetail.runtime}`}</Text>
+              <Text>{`${movieDetail.release_date}         ${timeConvert(movieDetail.runtime)}`}</Text>
             </View>
             <View style={styles.synopsis}>
               <Text style={styles.synopsisTitle}>Synopsis</Text>
